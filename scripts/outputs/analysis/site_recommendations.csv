@@ -1,0 +1,11 @@
+Site_Name,Tehsil,Priority_Rank,Site_Type,Latitude,Longitude,Tehsil_Score,Site_Score,Population_Served,Growth_Potential,Recommendation
+Anarkali Bazaar Area,Lahore City,1,Commercial Hub,31.5804,74.3137,80.0,83.633328580548,4123354,2.08,High Priority
+Mall Road Business District,Lahore City,1,Commercial,31.5656,74.3242,80.0,76.17127145208144,4123354,2.08,High Priority
+Liberty Market Area,Lahore City,1,Commercial Hub,31.5497,74.3436,80.0,75.0165040828768,4123354,2.08,High Priority
+GT Road Commercial,Shalimar,2,Commercial,31.56,74.38,47.27943054249824,49.879276395904874,2670140,2.66,Future Consideration
+Shalimar Gardens Area,Shalimar,2,Tourist/Residential,31.5884,74.3755,47.27943054249824,46.37269170638051,2670140,2.66,Future Consideration
+University of Punjab,Model Town,3,Educational Hub,31.5497,74.3436,42.230970123204,41.95965229178749,3244906,3.04,Future Consideration
+Model Town Commercial Area,Model Town,3,Commercial,31.51,74.32,42.230970123204,37.573904920855256,3244906,3.04,Future Consideration
+Raiwind Road Commercial,Raiwind,4,Developing Commercial,31.42,74.39,20.0,23.083838270116644,1080637,4.12,Future Consideration
+Fortress Stadium Area,Lahore Cantt,5,Sports/Entertainment,31.5204,74.3587,8.613154951153946,9.59785503752233,1885098,2.43,Future Consideration
+DHA Commercial Area,Lahore Cantt,5,Premium Residential,31.4697,74.2599,8.613154951153946,4.402776418242251,1885098,2.43,Future Consideration

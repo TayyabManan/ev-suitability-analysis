@@ -1,0 +1,11 @@
+name,lat,lon,tehsil,type,score,priority
+Liberty Market Area,31.5497,74.3436,Lahore City,Commercial Hub,84.8,High
+Anarkali Bazaar Area,31.5804,74.3137,Lahore City,Commercial Hub,81.6,High
+Mall Road Business District,31.5656,74.3242,Lahore City,Commercial,79.1,High
+GT Road Commercial,31.56,74.38,Shalimar,Commercial,48.1,Medium
+Shalimar Gardens Area,31.5884,74.3755,Shalimar,Tourist/Residential,47.6,Medium
+Model Town Commercial Center,31.51,74.32,Model Town,Commercial,45.2,Medium
+University of Punjab Area,31.5497,74.3336,Model Town,Educational Hub,44.1,Medium
+Raiwind Road Commercial,31.42,74.39,Raiwind,Developing Commercial,22.5,Future
+DHA Commercial Area,31.4697,74.2599,Lahore Cantt,Premium Residential,12.3,Future
+Fortress Stadium Area,31.5104,74.3487,Lahore Cantt,Sports/Entertainment,10.1,Future

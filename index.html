@@ -3,297 +3,733 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EV Analysis - GIS Portfolio Project | Haris</title>
+    <title>EV Analysis - GIS Portfolio Project | Tayyab Manan</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8IS0tIEJhY2tncm91bmQgY2lyY2xlIHdpdGggZ3JhZGllbnQgLS0+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnR3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojNjY3ZWVhO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM3NjRiYTI7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJjYXJHcmFkaWVudCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM0Q0FGNTA7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzJFN0QzMjtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDwhLS0gQmFja2dyb3VuZCAtLT4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNiIgZmlsbD0idXJsKCNiZ0dyYWRpZW50KSIvPgogIDwhLS0gR2xvYmUgb3V0bGluZSAtLT4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuOCIvPgogIDwhLS0gR2xvYmUgZ3JpZCBsaW5lcyAtLT4KICA8cGF0aCBkPSJNIDUgMTYgUSAxNiA4IDI3IDE2IFEgMTYgMjQgNSAxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjgiIG9wYWNpdHk9IjAuNiIvPgogIDxwYXRoIGQ9Ik0gNSAxNiBRIDE2IDI0IDI3IDE2IFEgMTYgOCA1IDE2IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC42Ii8+CiAgPGxpbmUgeDE9IjE2IiB5MT0iNSIgeDI9IjE2IiB5Mj0iMjciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjYiLz4KICA8IS0tIEVsZWN0cmljIGNhciBzaWxob3VldHRlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwLCAxOCkgc2NhbGUoMC44KSI+CiAgICA8IS0tIENhciBib2R5IC0tPgogICAgPHBhdGggZD0iTSAyIDQgTCAxNCA0IFEgMTUgNCAxNSAzIFEgMTUgMiAxNCAyIEwgMTIgMiBRIDExIDEgMTAgMSBMIDYgMSBRIDUgMSA0IDIgTCAyIDIgUSAxIDIgMSAzIFEgMSA0IDIgNCBaIiBmaWxsPSJ1cmwoI2NhckdyYWRpZW50KSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjMiLz4KICAgIDwhLS0gV2hlZWxzIC0tPgogICAgPGNpcmNsZSBjeD0iNCIgY3k9IjQuNSIgcj0iMS4yIiBmaWxsPSIjMzMzIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjAuMyIvPgogICAgPGNpcmNsZSBjeD0iMTIiIGN5PSI0LjUiIHI9IjEuMiIgZmlsbD0iIzMzMyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjMiLz4KICAgIDwhLS0gTGlnaHRuaW5nIGJvbHQgKGNoYXJnaW5nIHN5bWJvbCkgLS0+CiAgICA8cGF0aCBkPSJNIDcgLTEgTCA1LjUgMSBMIDYuNSAxIEwgNiAzIEwgNy41IDEgTCA2LjUgMSBaIiBmaWxsPSIjRkZENzAwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjAuMiIvPgogIDwvZz4KICA8IS0tIFNtYWxsIGNoYXJnaW5nIHN0YXRpb24gaWNvbiAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMCwgOCkgc2NhbGUoMC42KSI+CiAgICA8IS0tIENoYXJnaW5nIHBvc3QgLS0+CiAgICA8cmVjdCB4PSIwIiB5PSIyIiB3aWR0aD0iMiIgaGVpZ2h0PSI2IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CiAgICA8IS0tIENoYXJnaW5nIGNhYmxlIC0tPgogICAgPHBhdGggZD0iTSAyIDQgUSA0IDMgNiA1IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC45Ii8+CiAgICA8IS0tIFBsdWcgLS0+CiAgICA8Y2lyY2xlIGN4PSI2IiBjeT0iNSIgcj0iMC44IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CiAgPC9nPgo8L3N2Zz4K">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Comprehensive spatial analysis of Electric Vehicle infrastructure in Lahore using GIS. Multi-criteria analysis for optimal EV charging station placement.">
+    <meta name="keywords" content="EV analysis, electric vehicle, GIS, spatial analysis, Lahore, charging stations, geographic information systems, urban planning">
+    <meta name="author" content="Tayyab Manan">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
+        .hero-section {
             color: white;
-            margin-bottom: 30px;
+            text-align: center;
+            padding: 4rem 0;
         }
         
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
         }
         
-        .header p {
-            font-size: 1.2rem;
+        .hero-subtitle {
+            font-size: 1.3rem;
             opacity: 0.9;
         }
         
-        .content {
+        .content-section {
             background: white;
             border-radius: 15px;
-            padding: 40px;
+            padding: 3rem;
+            margin: 2rem 0;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
         }
         
-        .overview {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .overview h2 {
+        .section-title {
             color: #667eea;
-            margin-bottom: 20px;
             font-size: 2.5rem;
-        }
-        
-        .overview p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            text-align: center;
+            margin-bottom: 2rem;
         }
         
         .feature-card {
             background: #f8f9fa;
-            padding: 25px;
+            padding: 2rem;
             border-radius: 10px;
             border-left: 4px solid #667eea;
             transition: transform 0.3s ease;
+            height: 100%;
         }
         
         .feature-card:hover {
             transform: translateY(-5px);
         }
         
-        .feature-card h3 {
+        .feature-icon {
+            font-size: 2rem;
             color: #667eea;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            color: #667eea;
             font-size: 1.3rem;
+            margin-bottom: 1rem;
         }
         
-        .feature-card p {
-            color: #666;
-        }
-        
-        .tech-stack {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 40px 0;
-        }
-        
-        .tech-stack h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.8rem;
-        }
-        
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
-        
-        .tech-item {
+        .tech-card {
             background: white;
-            padding: 20px;
+            padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            height: 100%;
         }
         
-        .project-structure {
-            margin: 40px 0;
-        }
-        
-        .project-structure h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        
-        .structure-tree {
+        .map-section {
             background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
         }
         
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 40px;
+        .map-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
+        .map-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .structure-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+        }
+        
+        .structure-item {
+            padding: 0.5rem 0;
+            border-left: 3px solid #667eea;
+            padding-left: 1rem;
+            margin: 0.5rem 0;
+            background: white;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .structure-folder {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .structure-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-left: 1rem;
+        }
+        
+        .custom-btn {
             background: #667eea;
             color: white;
-            text-decoration: none;
+            border: none;
+            padding: 12px 30px;
             border-radius: 25px;
+            text-decoration: none;
             transition: all 0.3s ease;
             font-weight: bold;
+            display: inline-block;
         }
         
-        .btn:hover {
+        .custom-btn:hover {
             background: #764ba2;
+            color: white;
             transform: translateY(-2px);
         }
         
-        .btn.secondary {
+        .custom-btn.secondary {
             background: #6c757d;
         }
         
-        .btn.secondary:hover {
+        .custom-btn.secondary:hover {
             background: #545b62;
         }
         
-        .footer {
+        .footer-section {
             text-align: center;
             color: white;
-            padding: 20px;
+            padding: 2rem 0;
             opacity: 0.8;
         }
         
-        @media (max-width: 768px) {
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin-bottom: 5px;
+            }
+            
+            .header p {
+                font-size: 1rem;
             }
             
             .content {
-                padding: 20px;
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .overview h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+            
+            .overview p {
+                font-size: 1rem;
+                line-height: 1.5;
             }
             
             .features {
                 grid-template-columns: 1fr;
+                gap: 15px;
+                margin: 20px 0;
+            }
+            
+            .feature-card {
+                padding: 15px;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+            
+            .tech-stack {
+                padding: 20px;
+            }
+            
+            .tech-stack h3 {
+                font-size: 1.5rem;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .tech-item {
+                padding: 15px;
+            }
+            
+            .map-section {
+                padding: 15px;
+            }
+            
+            .map-section h3 {
+                font-size: 1.5rem;
+            }
+            
+            .map-container iframe {
+                height: 400px !important;
+            }
+            
+            .project-structure {
+                margin: 20px 0;
+            }
+            
+            .project-structure h3 {
+                font-size: 1.5rem;
+            }
+            
+            .structure-tree {
+                padding: 15px;
+                font-size: 0.8rem;
+                overflow-x: auto;
+            }
+            
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+                width: 200px;
+                text-align: center;
+            }
+            
+            .footer {
+                padding: 15px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Tablet Responsiveness */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .overview h2 {
+                font-size: 2.2rem;
+            }
+            
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .map-section {
+                padding: 25px;
+            }
+            
+            .map-container iframe {
+                height: 500px !important;
+            }
+            
+            .structure-tree {
+                font-size: 0.9rem;
+            }
+            
+            .links {
+                gap: 15px;
+            }
+        }
+        
+        /* Large Tablet/Small Desktop */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content {
+                padding: 35px;
+            }
+            
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .map-container iframe {
+                height: 550px !important;
+            }
+        }
+        
+        /* Large Desktop */
+        @media (min-width: 1025px) {
+            .container {
+                max-width: 1400px;
+            }
+            
+            .header h1 {
+                font-size: 3.2rem;
+            }
+            
+            .overview h2 {
+                font-size: 2.8rem;
+            }
+            
+            .content {
+                padding: 50px;
+            }
+            
+            .features {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 35px;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 25px;
+            }
+            
+            .map-container iframe {
+                height: 700px !important;
+            }
+        }
+        
+        /* Landscape Phone Orientation */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header {
+                margin-bottom: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header p {
+                font-size: 0.9rem;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .overview {
+                margin-bottom: 20px;
+            }
+            
+            .map-container iframe {
+                height: 300px !important;
+            }
+            
+            .features {
+                margin: 20px 0;
+            }
+        }
+        
+        /* High DPI Displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        
+        /* Touch Device Optimizations */
+        @media (pointer: coarse) {
+            .btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .feature-card {
+                cursor: pointer;
+                -webkit-tap-highlight-color: rgba(102, 126, 234, 0.1);
+            }
+            
+            .feature-card:hover {
+                transform: none;
+            }
+            
+            .feature-card:active {
+                transform: scale(0.98);
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content-section {
+                padding: 2rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .map-iframe {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem 1rem;
+                margin: 1rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .map-iframe {
+                height: 350px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>EV Analysis Project</h1>
-            <p>Comprehensive Spatial Analysis of Electric Vehicle Infrastructure</p>
-        </header>
-        
-        <div class="content">
-            <div class="overview">
-                <h2>Project Overview</h2>
-                <p>A comprehensive spatial analysis project focused on Electric Vehicle (EV) infrastructure, adoption patterns, and related socio-economic factors using Geographic Information Systems (GIS). This project combines demographic, economic, infrastructure, and satellite data to provide insights into EV accessibility and adoption patterns in Lahore.</p>
-            </div>
-            
-            <div class="features">
-                <div class="feature-card">
-                    <h3>🗺️ Spatial Analysis</h3>
-                    <p>Analyze EV infrastructure distribution and accessibility patterns across geographic regions.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>👥 Demographic Integration</h3>
-                    <p>Correlate EV adoption with demographic factors using 2023 Lahore Census Data.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>💰 Economic Analysis</h3>
-                    <p>Examine relationships between economic indicators and EV infrastructure development.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🛰️ Satellite Data Processing</h3>
-                    <p>Utilize satellite imagery for land use analysis and urban planning insights.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>📊 Interactive Mapping</h3>
-                    <p>Generate interactive and static maps for comprehensive data visualization.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>📈 Comprehensive Reporting</h3>
-                    <p>Automated report generation with key findings and actionable insights.</p>
-                </div>
-            </div>
-            
-            <div class="tech-stack">
-                <h3>Technology Stack</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <strong>Python</strong><br>
-                        Data Processing & Analysis
-                    </div>
-                    <div class="tech-item">
-                        <strong>GIS Software</strong><br>
-                        QGIS / ArcGIS
-                    </div>
-                    <div class="tech-item">
-                        <strong>OpenStreetMap</strong><br>
-                        Geospatial Data Source
-                    </div>
-                    <div class="tech-item">
-                        <strong>Census Data</strong><br>
-                        Demographic Analysis
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-structure">
-                <h3>Project Structure</h3>
-                <div class="structure-tree">
-ev-analysis/
-│
-├── data/                    # Processed data ready for analysis
-│   ├── boundaries/         # Geographic boundary files
-│   ├── demographics/       # Population and demographic data
-│   ├── economic/          # Economic indicators and data
-│   ├── infrastructure/    # EV charging stations, roads, utilities
-│   └── satellite/         # Satellite imagery and derived products
-│
-├── raw_data/               # Original, unprocessed data files
-│
-├── scripts/                # Analysis scripts and code
-│   ├── cache/             # Cached intermediate results
-│   └── outputs/           # Script-generated outputs
-│
-├── outputs/                # Final project outputs
-│   ├── maps/              # Publication-ready maps
-│   └── reports/           # Final reports and documentation
-│
-└── docs/                   # Project documentation
-                </div>
-            </div>
-            
-            <div class="links">
-                <a href="https://github.com/your-username/ev-analysis" class="btn" target="_blank">View on GitHub</a>
-                <a href="README.md" class="btn secondary">Documentation</a>
-            </div>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">EV Analysis Project</h1>
+            <p class="hero-subtitle">Comprehensive Spatial Analysis of Electric Vehicle Infrastructure</p>
         </div>
-        
-        <footer class="footer">
-            <p>&copy; 2024 Haris - GIS Portfolio Project</p>
-        </footer>
     </div>
+
+    <div class="container">
+        <!-- Overview Section -->
+        <section class="content-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <p class="lead text-center">A comprehensive spatial analysis project focused on Electric Vehicle (EV) infrastructure, adoption patterns, and related socio-economic factors using Geographic Information Systems (GIS). This project combines demographic, economic, infrastructure, and satellite data to provide insights into EV accessibility and adoption patterns in Lahore.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="content-section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Spatial Analysis</h3>
+                        <p>Analyze EV infrastructure distribution and accessibility patterns across geographic regions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">Demographic Integration</h3>
+                        <p>Correlate EV adoption with demographic factors using 2023 Lahore Census Data.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Economic Analysis</h3>
+                        <p>Examine relationships between economic indicators and EV infrastructure development.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <h3 class="feature-title">Satellite Data Processing</h3>
+                        <p>Utilize satellite imagery for land use analysis and urban planning insights.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <h3 class="feature-title">Interactive Mapping</h3>
+                        <p>Generate interactive and static maps for comprehensive data visualization.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Comprehensive Reporting</h3>
+                        <p>Automated report generation with key findings and actionable insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="content-section">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="tech-card">
+                        <i class="fab fa-python fa-3x text-primary mb-3"></i>
+                        <h5>Python</h5>
+                        <p>Data Processing & Analysis</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="tech-card">
+                        <i class="fas fa-globe fa-3x text-success mb-3"></i>
+                        <h5>GIS Software</h5>
+                        <p>QGIS / ArcGIS</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="tech-card">
+                        <i class="fas fa-map-pin fa-3x text-warning mb-3"></i>
+                        <h5>OpenStreetMap</h5>
+                        <p>Geospatial Data Source</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="tech-card">
+                        <i class="fas fa-chart-bar fa-3x text-info mb-3"></i>
+                        <h5>Census Data</h5>
+                        <p>Demographic Analysis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section class="map-section">
+            <h2 class="section-title text-center mb-4">
+                <i class="fas fa-map-marked-alt text-primary"></i>
+                EV Suitability Analysis Map
+            </h2>
+            <div class="map-container">
+                <iframe src="scripts/outputs/maps/ev_site_analysis_branded.html" 
+                        class="map-iframe">
+                </iframe>
+                <div class="text-center mt-3">
+                    <small class="text-muted">
+                        <strong>Interactive Map:</strong> Click on markers and zones to explore detailed EV infrastructure analysis for Lahore
+                    </small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Structure -->
+        <section class="content-section">
+            <h2 class="section-title">Project Structure</h2>
+            <div class="structure-card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="structure-item">
+                            <div class="structure-folder">
+                                <i class="fas fa-folder"></i> data/
+                            </div>
+                            <div class="structure-description">Processed data ready for analysis</div>
+                            <div class="ms-3">
+                                <div class="structure-item">
+                                    <i class="fas fa-folder-open"></i> boundaries/ 
+                                    <span class="structure-description">Geographic boundary files</span>
+                                </div>
+                                <div class="structure-item">
+                                    <i class="fas fa-folder-open"></i> demographics/ 
+                                    <span class="structure-description">Population data</span>
+                                </div>
+                                <div class="structure-item">
+                                    <i class="fas fa-folder-open"></i> economic/ 
+                                    <span class="structure-description">Economic indicators</span>
+                                </div>
+                                <div class="structure-item">
+                                    <i class="fas fa-folder-open"></i> infrastructure/ 
+                                    <span class="structure-description">EV stations, roads</span>
+                                </div>
+                                <div class="structure-item">
+                                    <i class="fas fa-folder-open"></i> satellite/ 
+                                    <span class="structure-description">Satellite imagery</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="structure-item">
+                            <div class="structure-folder">
+                                <i class="fas fa-folder"></i> raw_data/
+                            </div>
+                            <div class="structure-description">Original, unprocessed data files</div>
+                        </div>
+                        
+                        <div class="structure-item">
+                            <div class="structure-folder">
+                                <i class="fas fa-folder"></i> scripts/
+                            </div>
+                            <div class="structure-description">Analysis scripts and code</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="structure-item">
+                            <div class="structure-folder">
+                                <i class="fas fa-folder"></i> outputs/
+                            </div>
+                            <div class="structure-description">Final project outputs</div>
+                            <div class="ms-3">
+                                <div class="structure-item">
+                                    <i class="fas fa-folder-open"></i> maps/ 
+                                    <span class="structure-description">Publication-ready maps</span>
+                                </div>
+                                <div class="structure-item">
+                                    <i class="fas fa-folder-open"></i> reports/ 
+                                    <span class="structure-description">Final reports</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="structure-item">
+                            <div class="structure-folder">
+                                <i class="fas fa-folder"></i> docs/
+                            </div>
+                            <div class="structure-description">Project documentation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links Section -->
+        <section class="content-section text-center">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <a href="https://github.com/TayyabManan/ev-suitability-analysis" class="custom-btn me-3 mb-2" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                    <a href="README.md" class="custom-btn secondary mb-2">
+                        <i class="fas fa-book"></i> Documentation
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <p>&copy; 2025 Tayyab Manan - GIS Portfolio Project</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ec19296f26814a3c4dc966bdd25ef66f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            
+            /* Hide overlays on small screens to improve readability */
+            @media (max-width: 768px) {
+                /* Hide title on mobile to reduce clutter */
+                div[style*="position: fixed"][style*="top: 10px"][style*="left: 50%"] {
+                    display: none !important;
+                }
+                
+                /* Minimize legend on mobile */
+                div[style*="position: fixed"][style*="bottom: 50px"][style*="left: 50px"] {
+                    width: 180px !important;
+                    height: 120px !important;
+                    left: 5px !important;
+                    bottom: 10px !important;
+                    font-size: 8px !important;
+                    padding: 8px !important;
+                    opacity: 0.9 !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 50px"][style*="left: 50px"] h4 {
+                    font-size: 10px !important;
+                    margin-bottom: 5px !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 50px"][style*="left: 50px"] div {
+                    margin: 1px 0 !important;
+                    font-size: 7px !important;
+                    line-height: 1.2 !important;
+                }
+                
+                /* Minimize copyright on mobile */
+                div[style*="position: fixed"][style*="bottom: 10px"][style*="right: 10px"] {
+                    font-size: 6px !important;
+                    padding: 3px 5px !important;
+                    max-width: 120px !important;
+                    right: 5px !important;
+                    bottom: 5px !important;
+                    opacity: 0.8 !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 10px"][style*="right: 10px"] strong {
+                    font-size: 7px !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 10px"][style*="right: 10px"] div {
+                    margin: 1px 0 !important;
+                    line-height: 1.1 !important;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                /* Extra minimal on very small screens */
+                div[style*="position: fixed"][style*="bottom: 50px"][style*="left: 50px"] {
+                    width: 140px !important;
+                    height: 90px !important;
+                    left: 2px !important;
+                    bottom: 8px !important;
+                    font-size: 6px !important;
+                    padding: 5px !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 50px"][style*="left: 50px"] h4 {
+                    font-size: 8px !important;
+                    margin-bottom: 3px !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 50px"][style*="left: 50px"] div {
+                    font-size: 5px !important;
+                    margin: 0.5px 0 !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 10px"][style*="right: 10px"] {
+                    font-size: 5px !important;
+                    padding: 2px 3px !important;
+                    max-width: 100px !important;
+                    right: 2px !important;
+                    bottom: 3px !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 10px"][style*="right: 10px"] strong {
+                    font-size: 6px !important;
+                }
+            }
+            
+            @media (min-width: 769px) and (max-width: 1024px) {
+                /* Tablet - show title but smaller */
+                div[style*="position: fixed"][style*="top: 10px"][style*="left: 50%"] {
+                    font-size: 12px !important;
+                    padding: 8px !important;
+                    width: 80% !important;
+                    left: 10% !important;
+                }
+                
+                div[style*="position: fixed"][style*="top: 10px"][style*="left: 50%"] h3 {
+                    font-size: 16px !important;
+                    margin: 0 !important;
+                }
+                
+                div[style*="position: fixed"][style*="top: 10px"][style*="left: 50%"] p {
+                    font-size: 10px !important;
+                    margin: 2px 0 !important;
+                }
+                
+                div[style*="position: fixed"][style*="bottom: 50px"][style*="left: 50px"] {
+                    width: 240px !important;
+                    height: 160px !important;
+                    font-size: 10px !important;
+                    left: 10px !important;
+                }
+            }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+            top: 10px; left: 50%; transform: translateX(-50%);
+            background-color: white; border:2px solid grey; z-index:9999; 
+            font-size:16px; padding: 10px; box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+            border-radius: 5px;">
+<h3 style="margin:0; text-align:center; color:#333;">Lahore EV Charging Station Site Selection Analysis</h3>
+<p style="margin:5px 0 0 0; text-align:center; font-size:12px; color:#666;">Multi-Criteria Analysis | Population: 13M+ | 10 Recommended Sites</p>
+<p style="margin:3px 0 0 0; text-align:center; font-size:10px; color:#999; font-style: italic;">
+    By Tayyab Manan | GIS Portfolio Project
+</p>
+</div>
+    
+<div style="position: fixed; 
+            bottom: 10px; right: 10px; 
+            background-color: rgba(255,255,255,0.95); border:1px solid #ccc; z-index:9999; 
+            font-size:11px; padding: 8px 12px; box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            border-radius: 5px; max-width: 250px;">
+<div style="text-align: center; margin-bottom: 5px;">
+    <strong style="color: #2c3e50; font-size: 12px;">© 2025 Tayyab Manan</strong>
+</div>
+<div style="text-align: center; margin-bottom: 3px; color: #7f8c8d; font-size: 10px;">
+    GIS Analyst & Spatial Developer
+</div>
+<div style="text-align: center; margin-bottom: 5px;">
+    <a href="https://tayyabmannan.vercel.app/"  return false;" 
+       style="color: #3498db; text-decoration: none; font-size: 10px; font-weight: bold;">
+        🌐 View More Projects
+    </a>
+</div>
+<div style="text-align: center; font-size: 9px; color: #95a5a6; border-top: 1px solid #ecf0f1; padding-top: 3px;">
+    Lahore EV Infrastructure Analysis<br>
+    Multi-Criteria Spatial Decision Support
+</div>
+</div>
+    
+<div style="position: fixed; 
+            bottom: 50px; left: 50px; width: 300px; height: 220px; 
+            background-color: white; border:2px solid grey; z-index:9999; 
+            font-size:12px; padding: 15px; box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+            border-radius: 5px; overflow: hidden;">
+<h4 style="margin-top:0; margin-bottom:10px; color:#333; border-bottom: 1px solid #ccc; padding-bottom: 5px;">
+    EV Charging Station Analysis
+</h4>
+
+<div style="margin-bottom: 12px;">
+<b style="color:#333;">📍 Recommended Sites:</b><br>
+<div style="margin: 3px 0;">
+    <i class="fa fa-star" style="color:red; width: 15px;"></i> 
+    <span style="margin-left: 5px;">High Priority (Phase 1: 0-6 months)</span>
+</div>
+<div style="margin: 3px 0;">
+    <i class="fa fa-bolt" style="color:orange; width: 15px;"></i> 
+    <span style="margin-left: 5px;">Medium Priority (Phase 2: 6-18 months)</span>
+</div>
+<div style="margin: 3px 0;">
+    <i class="fa fa-info" style="color:blue; width: 15px;"></i> 
+    <span style="margin-left: 5px;">Future Consideration (Phase 3: 18+ months)</span>
+</div>
+</div>
+
+<div>
+<b style="color:#333;">🏛️ Tehsil Priority Zones:</b><br>
+<div style="margin: 2px 0; font-size: 11px;">
+    <span style="color:#ff4444; font-size:14px; width: 15px; display: inline-block;">●</span> 
+    <span>Rank #1: Lahore City</span>
+</div>
+<div style="margin: 2px 0; font-size: 11px;">
+    <span style="color:#ff8800; font-size:14px; width: 15px; display: inline-block;">●</span> 
+    <span>Rank #2: Shalimar</span>
+</div>
+<div style="margin: 2px 0; font-size: 11px;">
+    <span style="color:#ffbb00; font-size:14px; width: 15px; display: inline-block;">●</span> 
+    <span>Rank #3: Model Town</span>
+</div>
+<div style="margin: 2px 0; font-size: 11px;">
+    <span style="color:#88bb00; font-size:14px; width: 15px; display: inline-block;">●</span> 
+    <span>Rank #4: Raiwind</span>
+</div>
+<div style="margin: 2px 0; font-size: 11px;">
+    <span style="color:#4488bb; font-size:14px; width: 15px; display: inline-block;">●</span> 
+    <span>Rank #5: Lahore Cantt</span>
+</div>
+</div>
+</div>
+    
+            <div class="folium-map" id="map_ec19296f26814a3c4dc966bdd25ef66f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ec19296f26814a3c4dc966bdd25ef66f = L.map(
+                "map_ec19296f26814a3c4dc966bdd25ef66f",
+                {
+                    center: [31.5204, 74.3587],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a0ab75a64065046cd3124d21caaca862 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a0ab75a64065046cd3124d21caaca862.addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var circle_034f9c483710bb9e6caa8bd6c66f26ee = L.circle(
+                [31.5204, 74.3587],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8000.0, "stroke": true, "weight": 3}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+        var popup_26678728de35421b2c5402b22b9a2b78 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_67d3a1dd65f7a134ff76b3268a836e34 = $(`<div id="html_67d3a1dd65f7a134ff76b3268a836e34" style="width: 100.0%; height: 100.0%;">         <b>Lahore City</b><br>         Priority Rank: #1<br>         Composite Score: 80.0<br>         Population: 4,123,354<br>         Density: 19,268/sq.km<br>         Growth Rate: 2.1%         </div>`)[0];
+                popup_26678728de35421b2c5402b22b9a2b78.setContent(html_67d3a1dd65f7a134ff76b3268a836e34);
+            
+        
+
+        circle_034f9c483710bb9e6caa8bd6c66f26ee.bindPopup(popup_26678728de35421b2c5402b22b9a2b78)
+        ;
+
+        
+    
+    
+            var circle_ff8e341e90a4eeba549f1085f10bd9f0 = L.circle(
+                [31.5404, 74.3687],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4727.943054249824, "stroke": true, "weight": 3}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+        var popup_7bb282097588aa8d2511527c92664f22 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_770b84c8625e7c0ec6ce8cd0d6a9c87f = $(`<div id="html_770b84c8625e7c0ec6ce8cd0d6a9c87f" style="width: 100.0%; height: 100.0%;">         <b>Shalimar</b><br>         Priority Rank: #2<br>         Composite Score: 47.3<br>         Population: 2,670,140<br>         Density: 9,817/sq.km<br>         Growth Rate: 2.7%         </div>`)[0];
+                popup_7bb282097588aa8d2511527c92664f22.setContent(html_770b84c8625e7c0ec6ce8cd0d6a9c87f);
+            
+        
+
+        circle_ff8e341e90a4eeba549f1085f10bd9f0.bindPopup(popup_7bb282097588aa8d2511527c92664f22)
+        ;
+
+        
+    
+    
+            var circle_8edf8485442a5e1b229ecda3ff431402 = L.circle(
+                [31.5204, 74.3287],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4223.097012320401, "stroke": true, "weight": 3}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+        var popup_b1a25182902c66aa729e0b01955fd6c4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2fbaddcacca47c6074bbbe52ff55361a = $(`<div id="html_2fbaddcacca47c6074bbbe52ff55361a" style="width: 100.0%; height: 100.0%;">         <b>Model Town</b><br>         Priority Rank: #3<br>         Composite Score: 42.2<br>         Population: 3,244,906<br>         Density: 9,192/sq.km<br>         Growth Rate: 3.0%         </div>`)[0];
+                popup_b1a25182902c66aa729e0b01955fd6c4.setContent(html_2fbaddcacca47c6074bbbe52ff55361a);
+            
+        
+
+        circle_8edf8485442a5e1b229ecda3ff431402.bindPopup(popup_b1a25182902c66aa729e0b01955fd6c4)
+        ;
+
+        
+    
+    
+            var circle_9678b6c36c282a23b97e1eb5497660ee = L.circle(
+                [31.4204, 74.3887],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightgreen", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2000, "stroke": true, "weight": 3}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+        var popup_4dd6c04ac3a8870d28503e705d7fe8cb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7d1570ff3f69ca84c600333c87e9803d = $(`<div id="html_7d1570ff3f69ca84c600333c87e9803d" style="width: 100.0%; height: 100.0%;">         <b>Raiwind</b><br>         Priority Rank: #4<br>         Composite Score: 20.0<br>         Population: 1,080,637<br>         Density: 2,314/sq.km<br>         Growth Rate: 4.1%         </div>`)[0];
+                popup_4dd6c04ac3a8870d28503e705d7fe8cb.setContent(html_7d1570ff3f69ca84c600333c87e9803d);
+            
+        
+
+        circle_9678b6c36c282a23b97e1eb5497660ee.bindPopup(popup_4dd6c04ac3a8870d28503e705d7fe8cb)
+        ;
+
+        
+    
+    
+            var circle_5d262c6dc84bac4caa98c57eee38eab6 = L.circle(
+                [31.5004, 74.3387],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightblue", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2000, "stroke": true, "weight": 3}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+        var popup_f492bf15bd181edd7ab9a78cf7026407 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a6a715f8d1fdb860b3d9b5ed335ba8b7 = $(`<div id="html_a6a715f8d1fdb860b3d9b5ed335ba8b7" style="width: 100.0%; height: 100.0%;">         <b>Lahore Cantt</b><br>         Priority Rank: #5<br>         Composite Score: 8.6<br>         Population: 1,885,098<br>         Density: 4,045/sq.km<br>         Growth Rate: 2.4%         </div>`)[0];
+                popup_f492bf15bd181edd7ab9a78cf7026407.setContent(html_a6a715f8d1fdb860b3d9b5ed335ba8b7);
+            
+        
+
+        circle_5d262c6dc84bac4caa98c57eee38eab6.bindPopup(popup_f492bf15bd181edd7ab9a78cf7026407)
+        ;
+
+        
+    
+    
+            var marker_d8b7d5be2a9a8fe2ec629896aad36d7f = L.marker(
+                [31.5804, 74.3137],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_f0345005c16804e902d0923a6750d4e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f7d9fc77062eaa2f210dbc00ca502a31 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2740b7ced4887b9c16ccf3671ec57a3 = $(`<div id="html_f2740b7ced4887b9c16ccf3671ec57a3" style="width: 100.0%; height: 100.0%;">         <b>Anarkali Bazaar Area</b><br>         Tehsil: Lahore City<br>         Site Score: 83.6<br>         Type: Commercial Hub<br>         Priority: High Priority<br>         Population Served: 4,123,354<br>         Growth Rate: 2.1%         </div>`)[0];
+                popup_f7d9fc77062eaa2f210dbc00ca502a31.setContent(html_f2740b7ced4887b9c16ccf3671ec57a3);
+            
+        
+
+        marker_d8b7d5be2a9a8fe2ec629896aad36d7f.bindPopup(popup_f7d9fc77062eaa2f210dbc00ca502a31)
+        ;
+
+        
+    
+    
+                marker_d8b7d5be2a9a8fe2ec629896aad36d7f.setIcon(icon_f0345005c16804e902d0923a6750d4e1);
+            
+    
+            var marker_e829222edc32a92e9ec6d51bc4cce7a6 = L.marker(
+                [31.5656, 74.3242],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_5dd3771da3e76dc1ebee4097c5c8ca07 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_17f7a77274d13d61d454c8ae1deef296 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dff9de37da101caba3f6bcdb90419f2d = $(`<div id="html_dff9de37da101caba3f6bcdb90419f2d" style="width: 100.0%; height: 100.0%;">         <b>Mall Road Business District</b><br>         Tehsil: Lahore City<br>         Site Score: 76.2<br>         Type: Commercial<br>         Priority: High Priority<br>         Population Served: 4,123,354<br>         Growth Rate: 2.1%         </div>`)[0];
+                popup_17f7a77274d13d61d454c8ae1deef296.setContent(html_dff9de37da101caba3f6bcdb90419f2d);
+            
+        
+
+        marker_e829222edc32a92e9ec6d51bc4cce7a6.bindPopup(popup_17f7a77274d13d61d454c8ae1deef296)
+        ;
+
+        
+    
+    
+                marker_e829222edc32a92e9ec6d51bc4cce7a6.setIcon(icon_5dd3771da3e76dc1ebee4097c5c8ca07);
+            
+    
+            var marker_677bed5e571313810d2c69a697307375 = L.marker(
+                [31.5497, 74.3436],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_2b75c276cab2516d158ee0a0399e9aea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e1a1aaa1647389dd40af29edc1590783 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_66a0d98bc8fa2061148954b68dab3e8d = $(`<div id="html_66a0d98bc8fa2061148954b68dab3e8d" style="width: 100.0%; height: 100.0%;">         <b>Liberty Market Area</b><br>         Tehsil: Lahore City<br>         Site Score: 75.0<br>         Type: Commercial Hub<br>         Priority: High Priority<br>         Population Served: 4,123,354<br>         Growth Rate: 2.1%         </div>`)[0];
+                popup_e1a1aaa1647389dd40af29edc1590783.setContent(html_66a0d98bc8fa2061148954b68dab3e8d);
+            
+        
+
+        marker_677bed5e571313810d2c69a697307375.bindPopup(popup_e1a1aaa1647389dd40af29edc1590783)
+        ;
+
+        
+    
+    
+                marker_677bed5e571313810d2c69a697307375.setIcon(icon_2b75c276cab2516d158ee0a0399e9aea);
+            
+    
+            var marker_860686db66e2161ce711895488c5f16f = L.marker(
+                [31.56, 74.38],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_79725946e92fb4e55567650c3fe53a40 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ac22046723964f66d0e48aa889b4993b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d66574bbb3b00f0325e302bb32ebc6fd = $(`<div id="html_d66574bbb3b00f0325e302bb32ebc6fd" style="width: 100.0%; height: 100.0%;">         <b>GT Road Commercial</b><br>         Tehsil: Shalimar<br>         Site Score: 49.9<br>         Type: Commercial<br>         Priority: Future Consideration<br>         Population Served: 2,670,140<br>         Growth Rate: 2.7%         </div>`)[0];
+                popup_ac22046723964f66d0e48aa889b4993b.setContent(html_d66574bbb3b00f0325e302bb32ebc6fd);
+            
+        
+
+        marker_860686db66e2161ce711895488c5f16f.bindPopup(popup_ac22046723964f66d0e48aa889b4993b)
+        ;
+
+        
+    
+    
+                marker_860686db66e2161ce711895488c5f16f.setIcon(icon_79725946e92fb4e55567650c3fe53a40);
+            
+    
+            var marker_df7dcb6e3c4306797ecf395fa645ade7 = L.marker(
+                [31.5884, 74.3755],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_d67b423031a40f47111a34888fbe6396 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d760c516ecd97e604315b2598c28a898 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fbf1a27defd8f9c019829a1aecdc9895 = $(`<div id="html_fbf1a27defd8f9c019829a1aecdc9895" style="width: 100.0%; height: 100.0%;">         <b>Shalimar Gardens Area</b><br>         Tehsil: Shalimar<br>         Site Score: 46.4<br>         Type: Tourist/Residential<br>         Priority: Future Consideration<br>         Population Served: 2,670,140<br>         Growth Rate: 2.7%         </div>`)[0];
+                popup_d760c516ecd97e604315b2598c28a898.setContent(html_fbf1a27defd8f9c019829a1aecdc9895);
+            
+        
+
+        marker_df7dcb6e3c4306797ecf395fa645ade7.bindPopup(popup_d760c516ecd97e604315b2598c28a898)
+        ;
+
+        
+    
+    
+                marker_df7dcb6e3c4306797ecf395fa645ade7.setIcon(icon_d67b423031a40f47111a34888fbe6396);
+            
+    
+            var marker_89a96d1591b0c4a3c7047d3e3336d4d6 = L.marker(
+                [31.5497, 74.3436],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_120325244664e62c5c965fb4615b3e0d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bec3fe3241a3751685d1443ebcd455e1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e51141a3110b4cb339f69281f7031529 = $(`<div id="html_e51141a3110b4cb339f69281f7031529" style="width: 100.0%; height: 100.0%;">         <b>University of Punjab</b><br>         Tehsil: Model Town<br>         Site Score: 42.0<br>         Type: Educational Hub<br>         Priority: Future Consideration<br>         Population Served: 3,244,906<br>         Growth Rate: 3.0%         </div>`)[0];
+                popup_bec3fe3241a3751685d1443ebcd455e1.setContent(html_e51141a3110b4cb339f69281f7031529);
+            
+        
+
+        marker_89a96d1591b0c4a3c7047d3e3336d4d6.bindPopup(popup_bec3fe3241a3751685d1443ebcd455e1)
+        ;
+
+        
+    
+    
+                marker_89a96d1591b0c4a3c7047d3e3336d4d6.setIcon(icon_120325244664e62c5c965fb4615b3e0d);
+            
+    
+            var marker_43a2f14c63365b3c5210d8858a1d2468 = L.marker(
+                [31.51, 74.32],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_e5bb9b52f5fc710058cbe9c6b6b98c06 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_39a790a346eda048c46a80f9bd511293 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_44a610f134693c2bd4f01e5a05a9c0e3 = $(`<div id="html_44a610f134693c2bd4f01e5a05a9c0e3" style="width: 100.0%; height: 100.0%;">         <b>Model Town Commercial Area</b><br>         Tehsil: Model Town<br>         Site Score: 37.6<br>         Type: Commercial<br>         Priority: Future Consideration<br>         Population Served: 3,244,906<br>         Growth Rate: 3.0%         </div>`)[0];
+                popup_39a790a346eda048c46a80f9bd511293.setContent(html_44a610f134693c2bd4f01e5a05a9c0e3);
+            
+        
+
+        marker_43a2f14c63365b3c5210d8858a1d2468.bindPopup(popup_39a790a346eda048c46a80f9bd511293)
+        ;
+
+        
+    
+    
+                marker_43a2f14c63365b3c5210d8858a1d2468.setIcon(icon_e5bb9b52f5fc710058cbe9c6b6b98c06);
+            
+    
+            var marker_8c2eed94b3ad1e89b99a308298436a77 = L.marker(
+                [31.42, 74.39],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_13f9fcc705646c5ca38e23c895e68235 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b598ca76ff3a27aad024eb7b2899e060 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_23b2d65c48e0a0744c2e3f5363e53a53 = $(`<div id="html_23b2d65c48e0a0744c2e3f5363e53a53" style="width: 100.0%; height: 100.0%;">         <b>Raiwind Road Commercial</b><br>         Tehsil: Raiwind<br>         Site Score: 23.1<br>         Type: Developing Commercial<br>         Priority: Future Consideration<br>         Population Served: 1,080,637<br>         Growth Rate: 4.1%         </div>`)[0];
+                popup_b598ca76ff3a27aad024eb7b2899e060.setContent(html_23b2d65c48e0a0744c2e3f5363e53a53);
+            
+        
+
+        marker_8c2eed94b3ad1e89b99a308298436a77.bindPopup(popup_b598ca76ff3a27aad024eb7b2899e060)
+        ;
+
+        
+    
+    
+                marker_8c2eed94b3ad1e89b99a308298436a77.setIcon(icon_13f9fcc705646c5ca38e23c895e68235);
+            
+    
+            var marker_b8c92ce47a6bc06e48a26833710c4860 = L.marker(
+                [31.5204, 74.3587],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_d38bc86f4d12e4dd71c5b582db983328 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b507db383c8540b5d4bd8d789b7df768 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c83df19378b3aec16ced6218ca71f442 = $(`<div id="html_c83df19378b3aec16ced6218ca71f442" style="width: 100.0%; height: 100.0%;">         <b>Fortress Stadium Area</b><br>         Tehsil: Lahore Cantt<br>         Site Score: 9.6<br>         Type: Sports/Entertainment<br>         Priority: Future Consideration<br>         Population Served: 1,885,098<br>         Growth Rate: 2.4%         </div>`)[0];
+                popup_b507db383c8540b5d4bd8d789b7df768.setContent(html_c83df19378b3aec16ced6218ca71f442);
+            
+        
+
+        marker_b8c92ce47a6bc06e48a26833710c4860.bindPopup(popup_b507db383c8540b5d4bd8d789b7df768)
+        ;
+
+        
+    
+    
+                marker_b8c92ce47a6bc06e48a26833710c4860.setIcon(icon_d38bc86f4d12e4dd71c5b582db983328);
+            
+    
+            var marker_b867132959b13df9d2da07c928524d0f = L.marker(
+                [31.4697, 74.2599],
+                {
+}
+            ).addTo(map_ec19296f26814a3c4dc966bdd25ef66f);
+        
+    
+            var icon_684ca47e14947f6eb5bf3fe69e44fce3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b3583defef704cc59fa6c494b44ce751 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a8dc209d682a4e55c497154df1a024f5 = $(`<div id="html_a8dc209d682a4e55c497154df1a024f5" style="width: 100.0%; height: 100.0%;">         <b>DHA Commercial Area</b><br>         Tehsil: Lahore Cantt<br>         Site Score: 4.4<br>         Type: Premium Residential<br>         Priority: Future Consideration<br>         Population Served: 1,885,098<br>         Growth Rate: 2.4%         </div>`)[0];
+                popup_b3583defef704cc59fa6c494b44ce751.setContent(html_a8dc209d682a4e55c497154df1a024f5);
+            
+        
+
+        marker_b867132959b13df9d2da07c928524d0f.bindPopup(popup_b3583defef704cc59fa6c494b44ce751)
+        ;
+
+        
+    
+    
+                marker_b867132959b13df9d2da07c928524d0f.setIcon(icon_684ca47e14947f6eb5bf3fe69e44fce3);
+            
+</script>
+</html>
