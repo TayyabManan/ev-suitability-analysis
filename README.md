@@ -88,7 +88,3 @@ MIT
 ## Author
 
 Haris - GIS Portfolio Project
-
-## Acknowledgments
-
-(To be added as appropriate)
