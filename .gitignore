@@ -1,0 +1,115 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+dist/
+build/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Virtual Environments
+bin/
+include/
+lib/
+lib64/
+share/
+pyvenv.cfg
+
+# IDE and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# GIS specific
+*.lock
+*.cpg
+*.dbf
+*.prj
+*.qpj
+*.shp
+*.shx
+*.qgz
+*.qgs~
+*.gpkg-shm
+*.gpkg-wal
+
+# Large data files
+*.tif
+*.tiff
+*.jp2
+*.hdf
+*.nc
+*.grib
+*.grib2
+*.h5
+*.hdf5
+
+# Cache and temporary files
+scripts/cache/
+*.tmp
+*.temp
+*.cache
+
+# Logs
+*.log
+logs/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration files with sensitive data
+config.ini
+secrets.json
+*.env
+.env.*
+
+# Output files (optional - remove if you want to track outputs)
+# outputs/maps/*.png
+# outputs/maps/*.pdf
+# outputs/reports/*.pdf
+# outputs/reports/*.html
+
+# Raw data (if too large or sensitive)
+# raw_data/
+
+# OS generated files
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Compressed files
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Credentials and API keys
+credentials/
+api_keys/
+*.pem
+*.key
